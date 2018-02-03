@@ -90,7 +90,7 @@ namespace GuiUserSmartParcking
         /// <param name="e"></param>
         private void TB_IsEqvauls_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(this.TB_IsEqvauls.Text))// this condition chek if text box Name TB_IsEqvauls is not empty or null.
+            if (!string.IsNullOrEmpty(this.TB_IsEqvauls.Text))// this condition check if text box Name TB_IsEqvauls is not empty or null.
             {
                 string key = this.TB_IsEqvauls.Text; // set a key for searching exist in Dictionary 
                 Enteres item = new Enteres();// create a new entery car

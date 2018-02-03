@@ -57,34 +57,36 @@ namespace GuiUserSmartParcking.Model
 
         public static void cashData()
         {
-            Json json = new Json(@"https://alpradministration.000webhostapp.com/");// rest api from server
+            Json json = new Json(@"https://api.mongolab.com/api/1/databases/cars/collections/drivers?apiKey=_IUolN87EnEDzGqlWEQ6pA2fXkp-IZdA");// rest api from server
             json.ParseRequestGet(); // Parse to JSON
             string jsonString = string.Empty; 
 
             foreach (JObject obj in json.JArr.Children<JObject>())
             {
                 Driver d = new Driver(); // set new drivers from json
-                d.status = new Status("1000", "Aproval");
+                d.status = new Status();
                 foreach (JProperty p in obj.Properties())// loop - save a data from JSON
                 {
 
                     switch (p.Name)
                     {
-                        case "0":
-                            d.PlateNumber = (string)p.Value;
-                            continue;
-                        case "3":
-                            d.IdDriver = (string)p.Value;
-                            continue;
-                        case "1":
+                        case "first_name":
                             d.FirstName = (string)p.Value;
                             continue;
-                        case "2":
+                        case "last_name":
                             d.LastName = (string)p.Value;
                             continue;
+                        case "id":
+                            d.IdDriver = (string)p.Value;
+                            continue;
+                        case "p_num":
+                            d.PlateNumber = (string)p.Value;
+                            continue;
                     }
-
+                  
                 }
+                d.status.IdStatus = "1000";
+                d.status.NameStatus = "Allowed";
                 drivers.Add(d.PlateNumber, d); // save in the hash map
             }
         }

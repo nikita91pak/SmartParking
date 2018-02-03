@@ -23,10 +23,9 @@ namespace GuiUserSmartParcking.Model
         }
 
 
-        public Status(string id, string name)
+        public Status()
         {
-            this.idStatus = id;
-            this.nameStatus = name;
+           
         }
     }
 }

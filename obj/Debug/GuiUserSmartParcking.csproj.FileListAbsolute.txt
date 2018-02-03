@@ -17,3 +17,22 @@ C:\Users\Sergey\documents\visual studio 2017\Projects\GuiUserSmartParcking\GuiUs
 C:\Users\Sergey\documents\visual studio 2017\Projects\GuiUserSmartParcking\GuiUserSmartParcking\bin\Debug\Model\ParckingDB.mdf
 C:\Users\Sergey\documents\visual studio 2017\Projects\GuiUserSmartParcking\GuiUserSmartParcking\bin\Debug\Model\ParckingDB_log.ldf
 C:\Users\Sergey\Documents\Visual Studio 2017\Projects\GuiUserSmartParcking\GuiUserSmartParcking\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Sergey\smartparkingclient\bin\Debug\Model\ParckingDB.mdf
+C:\Users\Sergey\smartparkingclient\bin\Debug\Model\ParckingDB_log.ldf
+C:\Users\Sergey\smartparkingclient\bin\Debug\GuiUserSmartParcking.exe.config
+C:\Users\Sergey\smartparkingclient\bin\Debug\GuiUserSmartParcking.exe
+C:\Users\Sergey\smartparkingclient\bin\Debug\GuiUserSmartParcking.pdb
+C:\Users\Sergey\smartparkingclient\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Sergey\smartparkingclient\obj\Debug\GuiUserSmartParcking.csprojResolveAssemblyReference.cache
+C:\Users\Sergey\smartparkingclient\obj\Debug\LPR.g.cs
+C:\Users\Sergey\smartparkingclient\obj\Debug\App.g.cs
+C:\Users\Sergey\smartparkingclient\obj\Debug\GuiUserSmartParcking_Content.g.cs
+C:\Users\Sergey\smartparkingclient\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Sergey\smartparkingclient\obj\Debug\GuiUserSmartParcking_MarkupCompile.cache
+C:\Users\Sergey\smartparkingclient\obj\Debug\GuiUserSmartParcking_MarkupCompile.lref
+C:\Users\Sergey\smartparkingclient\obj\Debug\LPR.baml
+C:\Users\Sergey\smartparkingclient\obj\Debug\GuiUserSmartParcking.g.resources
+C:\Users\Sergey\smartparkingclient\obj\Debug\GuiUserSmartParcking.Properties.Resources.resources
+C:\Users\Sergey\smartparkingclient\obj\Debug\GuiUserSmartParcking.csproj.GenerateResource.Cache
+C:\Users\Sergey\smartparkingclient\obj\Debug\GuiUserSmartParcking.exe
+C:\Users\Sergey\smartparkingclient\obj\Debug\GuiUserSmartParcking.pdb
