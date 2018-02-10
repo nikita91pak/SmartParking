@@ -13,7 +13,7 @@ namespace GuiUserSmartParcking.Model
     class Driver
     {
        public static Dictionary<string, Driver> drivers = new Dictionary<string, Driver>();
-      
+        //var
         private string plateNumber;
         public  string PlateNumber
         {
@@ -50,12 +50,12 @@ namespace GuiUserSmartParcking.Model
         }
         
 
-        public Driver()
+        public Driver()//constuctor
         {
 
         }
 
-        public static void cashData()
+        public static void cashData()//this function are get all data form server
         {
             Json json = new Json(@"https://api.mongolab.com/api/1/databases/cars/collections/drivers?apiKey=_IUolN87EnEDzGqlWEQ6pA2fXkp-IZdA");// rest api from server
             json.ParseRequestGet(); // Parse to JSON
@@ -65,7 +65,7 @@ namespace GuiUserSmartParcking.Model
             {
                 Driver d = new Driver(); // set new drivers from json
                 d.status = new Status();
-                foreach (JProperty p in obj.Properties())// loop - save a data from JSON
+                foreach (JProperty p in obj.Properties())// loop - save a data from JSON 
                 {
 
                     switch (p.Name)
@@ -91,19 +91,19 @@ namespace GuiUserSmartParcking.Model
             }
         }
 
-        public static void DictionaryAdd(string key,Driver value)
+        public static void DictionaryAdd(string key,Driver value)// add new driver to Dictionary (hash map the key is plate number)
         {
             drivers.Add(key, value);
         }
 
-        public static Driver getDriver(string key)
+        public static Driver getDriver(string key)//get curetly driver form Dictionary
         {
             Driver d = new Driver();
             key = FormatKey(key);
-            return drivers.ContainsKey(key) ? drivers[key] : null;
+            return drivers.ContainsKey(key) ? drivers[key] : null;// retuent result if the plate is exist
         }
 
-        public static string FormatKey(string str)
+        public static string FormatKey(string str)//this transform from simple plate number to key in Dictionary
         {
             int index = 0;
             int lenght = str.Length;

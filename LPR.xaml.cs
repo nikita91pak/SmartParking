@@ -174,36 +174,42 @@ namespace GuiUserSmartParcking
         /// <param name="e">From class Enteres </param>
         private void ControlEnteres(Enteres e)
         {
+            
             int index = 0;
-            List<int> saveIndexs = new List<int>();
-            string plate = e.Driver.PlateNumber;
+            if(e.Driver != null)
+                {
+                 List<int> saveIndexs = new List<int>();
+                   string plate = e.Driver.PlateNumber;
 
-            if (this.enteres.Count != 0)
-            {
-                foreach (Enteres ent in this.enteres)
-                {
-                    if (ent.Driver.PlateNumber.Equals(plate))
-                        saveIndexs.Add(index);
-                    index++;
-                }
+                      if (this.enteres.Count != 0)
+                      {
+                          foreach (Enteres ent in this.enteres)
+                              {
+                                if (ent.Driver.PlateNumber.Equals(plate))
+                                  saveIndexs.Add(index);
+                                    index++;
+                          }
 
-                if (saveIndexs.Count == 0)
-                {
-                    e = Enter_Exit(e);
-                    this.enteres.Add(e);
-                }
-                else
-                {
-                    foreach (int i in saveIndexs)
-                        this.enteres[i] = Enter_Exit(this.enteres[i]);
-                }
+                            if (saveIndexs.Count == 0)
+                             {
+                               e = Enter_Exit(e);
+                                this.enteres.Add(e);
+                            }
+                            else
+                            {
+                                 foreach (int i in saveIndexs)
+                                     this.enteres[i] = Enter_Exit(this.enteres[i]);
+                            }
+                      }
+
+                     else
+                     {
+                        e = Enter_Exit(e);
+                         this.enteres.Add(e);
+                     }
             }
-
             else
-            {
-                 e = Enter_Exit(e);
-                this.enteres.Add(e);
-            }
+                MessageBox.Show("No dieatel for thi driver");
         }
 
         private Enteres Enter_Exit(Enteres item)
@@ -216,7 +222,8 @@ namespace GuiUserSmartParcking
                 item.Enter = DateTime.Now;
                 item.Exit = new DateTime();
                 setStatus("Enter", item);
-                query = string.Format("INSERT INTO Enteres VALUES ({0}, {1}, {2}, '{3}', '{4}', '{5}')", random.Next(1, 1000), int.Parse(item.Driver.Status.IdStatus), int.Parse(item.Driver.PlateNumber), item.Driver.Status.NameStatus, item.Enter, null);
+                query = string.Format("INSERT INTO Enteres VALUES ({0}, {1}, {2}, '{3}', '{4}', '{5}')", random.Next(1, 1000), int.Parse(item.Driver.Status.IdStatus), 
+                    int.Parse(item.Driver.PlateNumber), item.Driver.Status.NameStatus, item.Enter, null);
                 dal.DeleteInsertUpdate(query);
                 this.DG_History.ItemsSource = dal.GetDataTable("SELECT e.*, d.*   FROM Enteres as e INNER JOIN Drivers as d on e.p_num = d.p_num").DefaultView;
             }
