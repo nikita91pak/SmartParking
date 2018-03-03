@@ -117,10 +117,16 @@
                         </Border>
                     </TabItem>
                 </TabControl>
+              
+              <Canvas Name ="img_canvas" Width="360" Height="560" >
                 <Image   Name="Img_NumPlate"    Width="350" Height="550" Canvas.Top ="2" Canvas.Left ="0" />
-                <DataGrid Name="DG_History"  Canvas.Top="700" Canvas.Left="0" Height="AUTO " Width="AUTO">
-                  
-                </DataGrid>
+              </Canvas>
+              
+              <Canvas Canvas.Top="700" Name ="dataGrig_canvas" Width = "1000" Height ="700">
+                 <DataGrid Name="DG_History"   Canvas.Left="0" Height="700 " Width="1000">    
+                 </DataGrid>
+               </Canvas>
+            
             </Canvas>
         </ScrollViewer>
     </Grid>

@@ -51,11 +51,13 @@ namespace GuiUserSmartParcking.Model
             this.strResponseValue = string.Empty;
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(endPoint);
             request.Method = httpMethod.ToString();
-
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            if (response.StatusCode != HttpStatusCode.OK)
+             HttpWebResponse response;
+            try{
+              response = (HttpWebResponse)request.GetResponse();
+                   if (response.StatusCode != HttpStatusCode.OK)
             {
                 throw new ApplicationException("Error code: " + response.StatusCode);
+                
             }
             else
             {
@@ -65,8 +67,14 @@ namespace GuiUserSmartParcking.Model
                     StreamReader reader = new StreamReader(responseStream);
                     this.strResponseValue = reader.ReadToEnd();
                     reader.Close();
+               
                 }
             }
+             }
+            catch(Exception e){
+                Console.WriteLine("No connection to server");
+              }
+         
             
         }
 

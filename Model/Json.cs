@@ -35,6 +35,7 @@ namespace GuiUserSmartParcking.Model
              this.restValue = string.Empty;
              this.clientRest.MakeReguestGet();
              this.restValue = this.clientRest.StrResponsValue;
+            if(!string.IsNullOrEmpty(restValue))
              this.jarray = JArray.Parse(restValue);
         }
 

@@ -60,35 +60,44 @@ namespace GuiUserSmartParcking.Model
             Json json = new Json(@"https://api.mongolab.com/api/1/databases/cars/collections/drivers?apiKey=_IUolN87EnEDzGqlWEQ6pA2fXkp-IZdA");// rest api from server
             json.ParseRequestGet(); // Parse to JSON
             string jsonString = string.Empty; 
+            try{
+                 foreach (JObject obj in json.JArr.Children<JObject>())
+                 {
+                     Driver d = new Driver(); // set new drivers from json
+                     d.status = new Status();
+                        foreach (JProperty p in obj.Properties())// loop - save a data from JSON 
+                        {
 
-            foreach (JObject obj in json.JArr.Children<JObject>())
-            {
-                Driver d = new Driver(); // set new drivers from json
-                d.status = new Status();
-                foreach (JProperty p in obj.Properties())// loop - save a data from JSON 
-                {
-
-                    switch (p.Name)
-                    {
-                        case "first_name":
-                            d.FirstName = (string)p.Value;
-                            continue;
-                        case "last_name":
-                            d.LastName = (string)p.Value;
-                            continue;
-                        case "id":
-                            d.IdDriver = (string)p.Value;
-                            continue;
+                           switch (p.Name)
+                            {
+                              case "first_name":
+                                d.FirstName = (string)p.Value;
+                                continue;
+                             case "last_name":
+                                d.LastName = (string)p.Value;
+                                continue;
+                           case "id":
+                               d.IdDriver = (string)p.Value;
+                               continue;
                         case "p_num":
                             d.PlateNumber = (string)p.Value;
                             continue;
-                    }
+                            }
                   
-                }
-                d.status.IdStatus = "1000";
-                d.status.NameStatus = "Allowed";
-                drivers.Add(d.PlateNumber, d); // save in the hash map
+                        }
+                           d.status.IdStatus = "1000";
+                           d.status.NameStatus = "Allowed";
+                          drivers.Add(d.PlateNumber, d); // save in the hash map
+                 }
             }
+                 
+             catch(Exception e)
+            {
+                     
+                      Console.WriteLine("Check youre Connetion to internet"); 
+
+            }
+           
         }
 
         public static void DictionaryAdd(string key,Driver value)// add new driver to Dictionary (hash map the key is plate number)
