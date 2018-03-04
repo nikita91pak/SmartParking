@@ -208,8 +208,8 @@ namespace GuiUserSmartParcking
                          this.enteres.Add(e);
                      }
             }
-            else
-                MessageBox.Show("No dieatel for thi driver");
+            
+               
         }
 
         private Enteres Enter_Exit(Enteres item)
