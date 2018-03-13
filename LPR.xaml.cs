@@ -29,7 +29,7 @@ namespace GuiUserSmartParcking
     {
         private WatcherToDir watcher; //This class is responsible to lisen for a new files in dir the  path of dir is D:\img
         private List<Enteres> enteres; // this class mangen all enteres and exits of all cars in gate.
- 
+        private int countImg = 0 ;
         /// <summary>
         /// In this Constructor sets variables watcher and enteres and added event for lisen  to dir.
         /// </summary>
@@ -69,12 +69,12 @@ namespace GuiUserSmartParcking
                 FileInfo[] file = diProc.GetFiles(); //cash all file
                 if (file.Length - 1 != -1) // this condition check if the dir is not empty.
                 {
-                    Random nameFile = new Random(); //  giving a random name for a file jpg
+                    
                     this.watcher.Process.Comand = "alpr -c eu " + file[0].FullName; // set comand and path of picture
                     this.watcher.Process.CreateProcess();//set Proccess 
                     this.watcher.Process.Run(); // start to process a pictrue and rerun result.
                     FileInfo[] files = diProc.GetFiles(); // cash file
-                    File.Copy(files[0].FullName, @"D:\bitmapImage\" + nameFile.Next(1, 500) + ".jpg", true); //copy to onther dir for bitmap a picture.
+                    File.Copy(files[0].FullName, @"D:\bitmapImage\" + countImg + ".jpg", true); countImg++; //copy to onther dir for bitmap a picture.
                     this.Dispatcher.Invoke(() => this.TB_IsEqvauls.Text =  FormatPlate(this.watcher.Process.Result));// set text box for call event ChangeText
                     this.Dispatcher.Invoke(() => this.TB_IsEqvauls.Text = string.Empty);
                     this.watcher.ClearDir(); // clear dir.
@@ -119,7 +119,8 @@ namespace GuiUserSmartParcking
                 this.TB_id.Text = string.Empty;
                 this.TB_FirstName.Text = string.Empty;
                 this.TB_LastName.Text = string.Empty;
-               FormatPlate(watcher.Process.Result);
+                this.TB_PlateNumber.Text =  FormatPlate(watcher.Process.Result);
+               
                 setStatus("Error",null);
             }
         }
@@ -132,7 +133,8 @@ namespace GuiUserSmartParcking
             DirectoryInfo diImage = new DirectoryInfo(@"D:\bitmapImage");
             FileInfo[] files = diImage.GetFiles();
             diImage.Refresh();
-            this.Img_NumPlate.Source = new BitmapImage(new Uri(files[0].FullName));
+            int lastIndex = files.Length-1;
+            this.Img_NumPlate.Source = new BitmapImage(new Uri(files[lastIndex].FullName));
         }
 
         /// <summary>
@@ -163,6 +165,7 @@ namespace GuiUserSmartParcking
         /// <returns></returns>
         private string FormatPlate(string plate)
         {
+            if(plate.Length == 7)
            plate = plate.Insert(2, "-");
            plate = plate.Insert(6, "-");
            return plate;
@@ -175,20 +178,21 @@ namespace GuiUserSmartParcking
         private void ControlEnteres(Enteres e)
         {
             
-            int index = 0;
+            int index = 0;//tamplate the index from the enteres
             if(e.Driver != null)
                 {
-                 List<int> saveIndexs = new List<int>();
-                   string plate = e.Driver.PlateNumber;
+                 List<int> saveIndexs = new List<int>();//check the hashmap who exist in parcking or outside
+                   string plate = e.Driver.PlateNumber;//if the plate number is is exist i
 
                       if (this.enteres.Count != 0)
                       {
-                          foreach (Enteres ent in this.enteres)
+                             foreach (Enteres ent in this.enteres)
                               {
                                 if (ent.Driver.PlateNumber.Equals(plate))
-                                  saveIndexs.Add(index);
-                                    index++;
-                          }
+                                       saveIndexs.Add(index);
+                                    
+                                   index++;
+                               }
 
                             if (saveIndexs.Count == 0)
                              {
@@ -222,10 +226,6 @@ namespace GuiUserSmartParcking
                 item.Enter = DateTime.Now;
                 item.Exit = new DateTime();
                 setStatus("Enter", item);
-                query = string.Format("INSERT INTO Enteres VALUES ({0}, {1}, {2}, '{3}', '{4}', '{5}')", random.Next(1, 1000), int.Parse(item.Driver.Status.IdStatus), 
-                    int.Parse(item.Driver.PlateNumber), item.Driver.Status.NameStatus, item.Enter, null);
-                dal.DeleteInsertUpdate(query);
-                this.DG_History.ItemsSource = dal.GetDataTable("SELECT e.*, d.*   FROM Enteres as e INNER JOIN Drivers as d on e.p_num = d.p_num").DefaultView;
             }
             else if (item.Enter.Year != 1 && item.Exit.Year == 1)
             {

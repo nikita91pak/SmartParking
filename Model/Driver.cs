@@ -54,9 +54,17 @@ namespace GuiUserSmartParcking.Model
         {
 
         }
+        
+        string uri= "https://api.mongolab.com/api/1/databases/cars/collections/drivers?apiKey=_IUolN87EnEDzGqlWEQ6pA2fXkp-IZdA";
+        public static void  updateInfo(string data){
+            using(var client = new System.Net.WebClient()) {
+             client.UploadData(uri,"PUT",data);
+            }
 
-        public static void cashData()//this function are get all data form server
+}
+ public static void cashData()//this function are get all data form server
         {
+            
             Json json = new Json(@"https://api.mongolab.com/api/1/databases/cars/collections/drivers?apiKey=_IUolN87EnEDzGqlWEQ6pA2fXkp-IZdA");// rest api from server
             json.ParseRequestGet(); // Parse to JSON
             string jsonString = string.Empty; 
@@ -88,6 +96,7 @@ namespace GuiUserSmartParcking.Model
                            d.status.IdStatus = "1000";
                            d.status.NameStatus = "Allowed";
                           drivers.Add(d.PlateNumber, d); // save in the hash map
+                          
                  }
             }
                  

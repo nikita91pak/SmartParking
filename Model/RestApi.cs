@@ -44,7 +44,12 @@ namespace GuiUserSmartParcking.Model
             this.endPoint = string.Empty;
           
         }
-
+        public RestApi(String url, HttpVerb method){
+        switch(method){
+                     case GET: this.endPoint=url;break;
+                        case PUT: Console.WriteLine("PUT method");break;
+        }
+}
         public void MakeReguestGet()
         {
             this.httpMethod = HttpVerb.GET;
@@ -77,6 +82,38 @@ namespace GuiUserSmartParcking.Model
          
             
         }
+
+        public void MakeReguestPut(){
+            this.httpMethod = HttpVerb.Put;
+              this.strResponseValue = string.Empty;
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(endPoint);
+            request.Method = httpMethod.ToString();
+             HttpWebResponse response;
+            try{
+              response = (HttpWebResponse)request.GetResponse();
+                   if (response.StatusCode != HttpStatusCode.OK)
+            {
+                throw new ApplicationException("Error code: " + response.StatusCode);
+                
+            }
+            else
+            {
+                Stream responseStream = response.GetResponseStream();
+                if (responseStream != null)
+                {
+                    StreamReader reader = new StreamReader(responseStream);
+                    this.strResponseValue = reader.ReadToEnd();
+                    reader.Close();
+               
+                }
+            }
+             }
+            catch(Exception e){
+                Console.WriteLine("No connection to server");
+            }
+         
+            
+         }
 
     }
 }

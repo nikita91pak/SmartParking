@@ -39,6 +39,11 @@ namespace GuiUserSmartParcking.Model
              this.jarray = JArray.Parse(restValue);
         }
 
+        public void PutStringify(string id, string parking_status)
+        {
+                   
+        }
+
        
     }
 }

@@ -17,7 +17,7 @@ namespace GuiUserSmartParcking.Data
 
         public Dal()
         {
-            StringConnection = ConfigurationManager.ConnectionStrings["GuiUserSmartParcking.Properties.Settings.ParckingDBConnectionString"].ConnectionString;
+            StringConnection = ConfigurationManager.ConnectionStrings["SmartParcking_local_db"].ConnectionString;
             connection = new SqlConnection(StringConnection);
         }
 
