@@ -36,8 +36,8 @@ namespace GuiUserSmartParcking.Data
 
         public void CreateProcess()
         {
-           
-            this.processStarInfo.WorkingDirectory = @"C:\Users\Sergey\Downloads\openalpr-2.1.0-win-64bit\openalpr_64";
+
+            this.processStarInfo.WorkingDirectory = @"C:\Users\Inna\Downloads\openalpr-2.1.0-win-64bit\openalpr_64";
             this.processStarInfo.FileName = @"C:\Windows\System32\cmd.exe";
             this.processStarInfo.Arguments = "/c" + this.comand;
             this.process.StartInfo = processStarInfo;

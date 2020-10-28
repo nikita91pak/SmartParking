@@ -37,7 +37,7 @@ namespace GuiUserSmartParcking.Model
 
         public void watch()
         {
-            this.watcher.Path = @"D:\img";
+            this.watcher.Path = @"C:\Users\Inna\Documents\img";
             this.watcher.NotifyFilter = NotifyFilters.LastWrite;
             this.watcher.Filter = "*";
             this.watcher.EnableRaisingEvents = true;
@@ -46,8 +46,8 @@ namespace GuiUserSmartParcking.Model
 
         public void ClearDir()
         {
-            
-            DirectoryInfo di = new DirectoryInfo(@"D:\img");
+
+            DirectoryInfo di = new DirectoryInfo(@"C:\Users\Inna\Documents\img");
            
             foreach(FileInfo files in di.GetFiles())
             {

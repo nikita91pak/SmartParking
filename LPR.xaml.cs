@@ -65,7 +65,7 @@ namespace GuiUserSmartParcking
         {
             lock (this.watcher.Process)
             {
-                DirectoryInfo diProc = new DirectoryInfo(@"D:\img");//get all file from dir
+                DirectoryInfo diProc = new DirectoryInfo(@"C:\Users\Inna\Documents\img");//get all file from dir
                 FileInfo[] file = diProc.GetFiles(); //cash all file
                 if (file.Length - 1 != -1) // this condition check if the dir is not empty.
                 {
@@ -74,12 +74,16 @@ namespace GuiUserSmartParcking
                     this.watcher.Process.CreateProcess();//set Proccess 
                     this.watcher.Process.Run(); // start to process a pictrue and rerun result.
                     FileInfo[] files = diProc.GetFiles(); // cash file
-                    File.Copy(files[0].FullName, @"D:\bitmapImage\" + countImg + ".jpg", true); countImg++; //copy to onther dir for bitmap a picture.
+                    File.Copy(files[0].FullName, @"C:\bitmapImage\" + countImg + ".jpg", true); countImg++; //copy to onther dir for bitmap a picture.
                     this.Dispatcher.Invoke(() => this.TB_IsEqvauls.Text =  FormatPlate(this.watcher.Process.Result));// set text box for call event ChangeText
                     this.Dispatcher.Invoke(() => this.TB_IsEqvauls.Text = string.Empty);
                     this.watcher.ClearDir(); // clear dir.
 
                 }
+                else
+                {
+                    Console.WriteLine("Something Wrong");
+                } 
             }
         }
 

@@ -10,6 +10,7 @@ using Newtonsoft.Json.Linq;
 
 namespace GuiUserSmartParcking.Model
 {
+
     class Driver
     {
        public static Dictionary<string, Driver> drivers = new Dictionary<string, Driver>();
@@ -55,12 +56,14 @@ namespace GuiUserSmartParcking.Model
 
         }
         
-        string uri= "https://api.mongolab.com/api/1/databases/cars/collections/drivers?apiKey=_IUolN87EnEDzGqlWEQ6pA2fXkp-IZdA";
-        public static void  updateInfo(string data){
+     
+       
+        public static void  updateInfo(byte[] data){
+            Uri uri = new Uri("https://api.mongolab.com/api/1/databases/cars/collections/drivers?apiKey=_IUolN87EnEDzGqlWEQ6pA2fXkp-IZdA");
             using(var client = new System.Net.WebClient()) {
-             client.UploadData(uri,"PUT",data);
+                byte[] b = client.UploadData(uri, "PUT", data);
             }
-
+            
 }
  public static void cashData()//this function are get all data form server
         {

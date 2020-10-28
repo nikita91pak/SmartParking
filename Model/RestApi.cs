@@ -46,8 +46,8 @@ namespace GuiUserSmartParcking.Model
         }
         public RestApi(String url, HttpVerb method){
         switch(method){
-                     case GET: this.endPoint=url;break;
-                        case PUT: Console.WriteLine("PUT method");break;
+            case HttpVerb.GET: this.endPoint = url; break;
+            case HttpVerb.PUT: Console.WriteLine("PUT method"); break;
         }
 }
         public void MakeReguestGet()
@@ -84,7 +84,7 @@ namespace GuiUserSmartParcking.Model
         }
 
         public void MakeReguestPut(){
-            this.httpMethod = HttpVerb.Put;
+            this.httpMethod = HttpVerb.PUT;
               this.strResponseValue = string.Empty;
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(endPoint);
             request.Method = httpMethod.ToString();
